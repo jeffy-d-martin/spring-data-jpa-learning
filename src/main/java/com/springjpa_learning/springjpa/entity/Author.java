@@ -10,7 +10,15 @@ import lombok.NoArgsConstructor;
 @Table(name = "author_details")
 public class Author {
     @Id
-    @GeneratedValue
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "author_sequences"
+    )
+    @SequenceGenerator(
+            name = "author_sequences" ,
+            sequenceName = "a_s",
+            allocationSize = 2
+    )
     private Long id;
     @Column(name = "first_name")
     private String firstName;
