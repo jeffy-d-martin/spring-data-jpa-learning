@@ -20,10 +20,21 @@ public class Author {
             allocationSize = 2
     )
     private Long id;
-    @Column(name = "first_name")
+    @Column(
+            name = "first_name",
+            nullable = false
+    )
     private String firstName;
-    @Column(name = "last_name")
+    @Column(
+            name = "first_name",
+            nullable = false
+    )
     private String lastName;
+    @Column(
+            name = "email" ,
+            unique = true ,
+            nullable = false
+    )
     private String email;
     private int age;
 }
