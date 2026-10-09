@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -19,6 +21,9 @@ public class Author {
             sequenceName = "a_s",
             allocationSize = 2
     )
+    @Column(
+            name = "author_id"
+    )
     private Long id;
     @Column(
             name = "first_name",
@@ -26,7 +31,7 @@ public class Author {
     )
     private String firstName;
     @Column(
-            name = "first_name",
+            name = "last_name",
             nullable = false
     )
     private String lastName;
@@ -36,5 +41,20 @@ public class Author {
             nullable = false
     )
     private String email;
+    @Column(
+            name = "age",
+            nullable = false
+    )
     private int age;
+    @ManyToMany
+    @JoinTable(
+            name = "course_authors",
+            joinColumns = {
+                    @JoinColumn(name = "author_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "course_id")
+            }
+    )
+    private List<Course> courses;
 }
